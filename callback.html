@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SMART OAuth Callback</title>
+
+<style>
+body{
+    font-family: Arial;
+    max-width:700px;
+    margin:auto;
+    padding:40px;
+}
+pre{
+    background:#f4f4f4;
+    padding:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Epic SMART Authorization Complete</h2>
+
+<p>If login succeeded, the authorization code is below.</p>
+
+<div id="result"></div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+const code = params.get("code");
+const state = params.get("state");
+const error = params.get("error");
+
+let html = "";
+
+if(code){
+    html += "<h3>Authorization Code</h3>";
+    html += "<pre>"+code+"</pre>";
+}
+
+if(state){
+    html += "<h3>State</h3>";
+    html += "<pre>"+state+"</pre>";
+}
+
+if(error){
+    html += "<h3>Error</h3>";
+    html += "<pre>"+error+"</pre>";
+}
+
+document.getElementById("result").innerHTML = html;
+
+</script>
+
+</body>
+</html>
